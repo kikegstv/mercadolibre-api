@@ -55,12 +55,13 @@ async function getItemDetail(responseDetail, responseDescription) {
                 amount: responseDetail.price,
                 decimals: currency && currency.decimal_places
             },
+            picture: responseDetail.pictures[0].url || responseDetail.thumbnail,
+            condition: responseDetail.condition,
+            free_shipping: responseDetail.shipping.free_shipping,
+            sold_quantity: responseDetail.sold_quantity,
+            description: responseDescription.plain_text
         },
-        picture: responseDetail.thumbnail,
-        condition: responseDetail.condition,
-        free_shipping: responseDetail.shipping.free_shipping,
-        sold_quantity: responseDetail.sold_quantity,
-        description: responseDescription.plain_text
+
     }
     return { productDetail, categories };
 }
