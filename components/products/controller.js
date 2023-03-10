@@ -115,19 +115,12 @@ async function getCategoriesNameList(items) {
 
     let maxResultItem;
     if (categoriesList.length > 1) {
-        for (let i = 0; i < categoriesList.length; i++) {
-            const currentItem = categoriesList[i];
-
-            if (!maxResultItem) {
-                maxResultItem = currentItem;
-
-            } else if (currentItem.results > maxResultItem.results) {
-                maxResultItem = currentItem;
-            }
-        }
+        maxResultItem = categoriesList.reduce((max, current) => (current.results > max.results ? current : max), categoriesList[0]);
     }
 
-    const categoryDetail = (maxResultItem) ? await axios.get(`https://api.mercadolibre.com/categories/${maxResultItem.id}`) : await axios.get(`https://api.mercadolibre.com/categories/${categoriesList[0].id}`);
+    const categoryId = (maxResultItem) ? maxResultItem.id : categoriesList[0].id;
+
+    const categoryDetail = await axios.get(`https://api.mercadolibre.com/categories/${categoryId}`);
 
     return getTextCategories(categoryDetail.data);
 }
