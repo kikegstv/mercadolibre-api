@@ -9,4 +9,3 @@ app.use(cors());
 routes(app);
 
 app.listen(3000);
-console.log('La app esta escuchando en http://localhost:3000');

@@ -1,4 +1,3 @@
-import express from "express";
 import products from './../components/products/network.js';
 
 const routes = function (server) {

@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
 
         success(req, res, responseBody, 201)
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 });
 
@@ -26,9 +26,9 @@ router.get('/:id', async (req, res) => {
 
         const { productDetail, categories } = responseBody
 
-        success(req, res, {productDetail, categories }, 201)
+        success(req, res, { productDetail, categories }, 201)
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 });
 
